@@ -1,0 +1,10 @@
+FROM mwaaas/node-nginx/5.11.0-1.8.1-1
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ONBUILD COPY . /usr/src/app
+
+ONBUILD RUN npm install --unsafe-perm=true
+
+ONBUILD RUN cp -a /usr/src/app/. /usr/share/nginx/html
