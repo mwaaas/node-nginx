@@ -1,4 +1,4 @@
-FROM mwaaas/node-nginx/5.11.0-1.8.1-1
+FROM mwaaas/node-nginx:5.11.0-1.8.1-1
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
