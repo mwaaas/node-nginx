@@ -1,5 +1,11 @@
 FROM node:5.11.0
 
+RUN mkdir -p /usr/share/nginx/html/
+WORKDIR /usr/share/nginx/html
+
+COPY package.json /usr/share/nginx/html
+
+RUN npm install --only=dev --unsafe-perm=true
 
 ENV NGINX_VERSION 1.8.1-1~jessie
 
@@ -14,6 +20,8 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
+# Copy custom configuration file from the current directory
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80 443
 
