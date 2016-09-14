@@ -1,4 +1,4 @@
-FROM node:5.11.0
+FROM node:latest
 
 RUN mkdir -p /usr/share/nginx/html/
 WORKDIR /usr/share/nginx/html
