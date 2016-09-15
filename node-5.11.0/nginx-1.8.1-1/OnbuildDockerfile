@@ -2,7 +2,8 @@ FROM mwaaas/node-nginx:5.11.0-1.8.1-1
 
 ONBUILD COPY . /usr/share/nginx/html
 
-ONBUILD RUN  npm install --only=dev --unsafe-perm=true
+#ONBUILD RUN  npm install --only=dev --unsafe-perm=true
+ONBUILD RUN  npm install --unsafe-perm=true
 
 ONBUILD RUN npm run tsc
 
