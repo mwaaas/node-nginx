@@ -4,6 +4,7 @@ RUN mkdir -p /usr/share/nginx/html/
 WORKDIR /usr/share/nginx/html
 
 COPY package.json /usr/share/nginx/html
+COPY typings.json /usr/share/nginx/html
 
 RUN npm install --only=dev --unsafe-perm=true
 
