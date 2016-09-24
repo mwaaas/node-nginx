@@ -1,14 +1,8 @@
-FROM node:4.4.3
+FROM node:5.12
 
-RUN mkdir -p /usr/share/nginx/html/
-WORKDIR /usr/share/nginx/html
-
-COPY package.json /usr/share/nginx/html
-COPY typings.json /usr/share/nginx/html
-
-RUN npm install -g npm
-
-RUN npm install --only=dev --unsafe-perm=true
+RUN mkdir -p /usr/packages/
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
 ENV NGINX_VERSION 1.8.1-1~jessie
 
