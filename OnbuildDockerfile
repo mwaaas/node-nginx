@@ -19,5 +19,5 @@ RUN npm install --unsafe-perm=true
 ONBUILD RUN ng build --prod --env=prod
 
 # configure nginx if there is a custom configuration
-ONBUILD RUN [ -f ./nginx.conf ] && cp  /usr/src/app/nginx.conf  /etc/nginx/nginx.conf | echo "nginx  file not found"
+ONBUILD RUN [ -f ./nginx.conf ] && cp  /usr/src/app/nginx.conf  /etc/nginx/nginx.conf || echo "nginx  file not found"
 
