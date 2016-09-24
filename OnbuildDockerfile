@@ -12,7 +12,7 @@ RUN cd /usr/packages/ && npm install --unsafe-perm=true
 
 ONBUILD COPY . /usr/src/app
 
-ONBUILD RUN cp /usr/packages/node_modules /usr/src/app/node_modules
+ONBUILD RUN cp -r /usr/packages/node_modules /usr/src/app/
 
 RUN npm install --unsafe-perm=true
 
