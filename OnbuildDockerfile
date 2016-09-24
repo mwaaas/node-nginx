@@ -8,18 +8,16 @@ RUN cd $(npm root -g)/npm \
   && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
 
 COPY package.json /usr/packages/
-RUN npm install --unsafe-perm=true
+RUN cd /usr/packages/ && npm install --unsafe-perm=true
 
 ONBUILD COPY . /usr/src/app
 
-ONBUILD RUN [ -f ./package.json ] && | cp /usr/src/app/package.json /usr/packages/ && npm install --unsafe-perm=true | echo "package.json file not found"
+ONBUILD RUN cp /usr/packages/node_modules /usr/src/app/node_modules
+
+RUN npm install --unsafe-perm=true
 
 ONBUILD RUN ng build --prod --env=prod
-
-EXPOSE 80 49153
 
 # configure nginx if there is a custom configuration
 ONBUILD RUN [ -f ./nginx.conf ] && cp  /usr/src/app/nginx.conf  /etc/nginx/nginx.conf | echo "nginx  file not found"
 
-# Link node modules
-RUN ln -s /usr/packages/node_modules /usr/src/app/

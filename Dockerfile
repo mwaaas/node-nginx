@@ -1,7 +1,7 @@
 FROM node:5.12
 
 RUN mkdir -p /usr/packages/
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app/
 WORKDIR /usr/src/app
 
 ENV NGINX_VERSION 1.8.1-1~jessie
@@ -20,6 +20,6 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 # Copy custom configuration file from the current directory
 COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 80 443
+EXPOSE 80 443 49153
 
 CMD ["nginx", "-g", "daemon off;"]
